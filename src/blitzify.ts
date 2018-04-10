@@ -13,7 +13,7 @@ export function createBlitzList(args: Config): Promise<string[]> {
 
   // For now we are simply returning the promise to test this half of the process
   return git.Repository.open(args.pathToRepo)
-    .then(filterTags(args))
+    .then(filterTags(args.prefix))
     .catch(err => {
       console.error(`Unabled to open repository at: ${args.pathToRepo}`, err);
       return [];
@@ -25,12 +25,15 @@ export function createBlitzList(args: Config): Promise<string[]> {
  *
  * TODO: Tag matching is currently case sensitive and prefix can match
  * any position in the tag.
- * @param repo the open repository to fetch the tags from
+ * @param prefix target prefix used for filtering
  * @return a function that can be called to obtain the promise to a filtered list
  */
-function filterTags(config: Config): (repo: git.Repository) => Promise<string[]> {
+function filterTags(prefix: string): (repo: git.Repository) => Promise<string[]> {
+  /**
+   * @param repo target repo to look for tags, supplied by callback initiator
+   */
   return function (repo: git.Repository) {
     return git.Tag.list(repo)
-      .then(tagList => tagList.filter(tag => tag.indexOf(config.prefix) >= 0));
+      .then(tagList => tagList.filter(tag => tag.indexOf(prefix) >= 0));
   };
 }
