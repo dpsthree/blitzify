@@ -2,20 +2,22 @@ import * as yargs from 'yargs';
 
 /**
  * By default Blitzify will look for numbered steps tagged with
- * git commits starting with the specified prefix. These will be printed
+ * git commits starting with the specified prefix. It looks for these tags in the repo
+ * indicated by the specified path. These will be printed
  * out as markdown web links to the outfile. Within the outfile it will
  * look for the marker to determine where it should be placed.
  */
 const DEFAULT_PREFIX = 'step-',
   DEFAULT_OUTFILE = 'README.md',
-  DEFAULT_MARKER = '----stackblitz list----';
-
+  DEFAULT_MARKER = '----stackblitz list----',
+  DEFAULT_PATH_TO_REPO = '.';
 
 /** Defines the type of the object returned by yargs */
 export interface Config extends yargs.Arguments {
-  prefix?: string;
-  outfile?: string;
-  marker?: string;
+  prefix: string;
+  outfile: string;
+  marker: string;
+  pathToRepo: string;
 }
 
 /**
@@ -41,6 +43,11 @@ export function processArgs() {
     .alias('m', 'marker')
     .describe('m', 'string used to indicate where output should be placed within the outfile')
     .default('m', DEFAULT_MARKER)
+
+    .string('r')
+    .alias('r', 'pathToRepo')
+    .describe('r', 'The path to the target repo')
+    .default('r', DEFAULT_PATH_TO_REPO)
 
     .help()
     .argv as Config;
