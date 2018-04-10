@@ -8,14 +8,14 @@ import * as yargs from 'yargs';
  * look for the marker to determine where it should be placed.
  */
 const DEFAULT_PREFIX = 'step-',
-  DEFAULT_OUTFILE = 'README.md',
+  DEFAULT_OUTFILE = './README.md',
   DEFAULT_MARKER = '----stackblitz list----',
   DEFAULT_PATH_TO_REPO = '.';
 
 /** Defines the type of the object returned by yargs */
 export interface Config extends yargs.Arguments {
   prefix: string;
-  outfile: string;
+  pathToOutfile: string;
   marker: string;
   pathToRepo: string;
   githubRepo: string;
@@ -36,8 +36,8 @@ export function processArgs() {
     .default('p', DEFAULT_PREFIX)
 
     .string('o')
-    .alias('o', 'outfile')
-    .describe('o', 'file used to capture list of steps')
+    .alias('o', 'pathToOutfile')
+    .describe('o', 'path to file used to capture list of steps')
     .default('o', DEFAULT_OUTFILE)
 
     .string('m')

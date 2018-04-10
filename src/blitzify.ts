@@ -1,4 +1,6 @@
 import * as git from 'nodegit';
+// tslint:disable-next-line:no-require-imports
+const replace = require('replace-in-file');
 
 import { Config } from './config';
 import { ParsedTag } from './types';
@@ -25,12 +27,20 @@ export function createBlitzList(args: Config): Promise<void> {
   // For now we are simply returning the promise to test this half of the process
   return git.Repository.open(args.pathToRepo)
     .then(filterTags(tagRegExp))
-    .then(processTags(args.prefix, tagRegExp, args.githubRepo))
-    .then(linksToWrite => { console.log('links to write', linksToWrite); return linksToWrite;})
-    .then(links => links.join('\n'))
-    .then(stringToWrite => console.log('string to write', stringToWrite))
     .catch(err => {
-      console.error(`Unabled to open repository at: ${args.pathToRepo}`, err);
+      console.error(`Unabled to open repository at: ${args.pathToRepo}`, err)
+      return [];
+    })
+    .then(processTags(args.prefix, tagRegExp, args.githubRepo))
+    .then(links => links.join('\n'))
+    .then(stringToWrite => {
+      const options = {
+        files: args.pathToOutfile,
+        from: args.marker,
+        to: stringToWrite
+      };
+      return <Promise<any>>replace(options)
+        .catch((error: Error) => console.error('unable to replace within file', error))
     });
 }
 

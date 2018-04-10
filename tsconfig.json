@@ -9,7 +9,7 @@
     "outDir": "build"
   },
   "include": [
-    "src/app.ts",
-    "src/test/**/*.spec.ts"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
   ]
 }
