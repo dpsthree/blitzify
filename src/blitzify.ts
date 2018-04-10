@@ -2,15 +2,36 @@ import * as git from 'nodegit';
 
 import { Config } from './config';
 
-export function createBlitzList(args: Config): Promise<void> {
+/**
+ * Orchestrates the tasks needed for creation of link generation.
+ *
+ * Specifically createBlitzList will start the asynchronous process of fetching
+ * git information and open the markdown file for reading and writing. The
+ * resulting promises are then composed together to write out the StackBlitz listing
+ * @param args the operational parameters, defaults already provided
+ */
+export function createBlitzList(args: Config): Promise<string[]> {
+
+  // For now we are simply returning the promise to test this half of the process
   return git.Repository.open(args.pathToRepo)
-    .then(processTags)
-    .catch(err => console.error(`Unabled to open repository at: ${args.pathToRepo}`, err));
+    .then(processTags(args))
+    .catch(err => {
+      console.error(`Unabled to open repository at: ${args.pathToRepo}`, err);
+      return [];
+    });
 }
 
-function processTags(repo: git.Repository) {
-  return git.Tag.list(repo)
-    .then(tagList => {
-      console.log('tagList', tagList);
-    });
+/**
+ * Creates filtered list of tags with which to generate links
+ *
+ * TODO: Tag matching is currently case sensitive and prefix can match
+ * any position in the tag.
+ * @param repo the open repository to fetch the tags from
+ * @return a function that can be called to obtain the promise to a filtered list
+ */
+function processTags(config: Config): (repo: git.Repository) => Promise<string[]> {
+  return function (repo: git.Repository) {
+    return git.Tag.list(repo)
+      .then(tagList => tagList.filter(tag => tag.indexOf(config.prefix) >= 0));
+  };
 }
