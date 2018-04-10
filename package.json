@@ -1,0 +1,31 @@
+{
+  "name": "blitzify",
+  "version": "1.0.0",
+  "description": "Tooling to automate stack blitz references",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tslint \"src/**/*.ts\"",
+    "lint:fix": "tslint --fix \"**/*.ts?(x)\" --exclude \"**/node_modules/**\"",
+    "start": "ts-node src/app.ts",
+    "build": "echo build coming soon",
+    "test": "",
+    "clean": "echo Nothing to clean"
+  },
+  "author": "Paul Spears dpsthree@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "nodegit": "^0.22.0",
+    "yargs": "11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "9.6.3",
+    "@types/yargs": "11.0.0",
+    "ts-node": "5.0.1",
+    "tslint": "5.9.1",
+    "typescript": "2.8.1"
+  },
+  "engines": {
+    "node": ">= 9.7.1",
+    "npm": ">= 5.8.0"
+  }
+}

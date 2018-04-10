@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "outDir": "build"
+  },
+  "include": [
+    "src/app.ts",
+    "src/test/**/*.spec.ts"
+  ]
+}
