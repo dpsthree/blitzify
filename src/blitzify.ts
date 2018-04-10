@@ -6,8 +6,7 @@ import { Config } from './config';
  * Orchestrates the tasks needed for creation of link generation.
  *
  * Specifically createBlitzList will start the asynchronous process of fetching
- * git information and open the markdown file for reading and writing. The
- * resulting promises are then composed together to write out the StackBlitz listing
+ * git information and modifying the markdown file.
  * @param args the operational parameters, defaults already provided
  */
 export function createBlitzList(args: Config): Promise<string[]> {
