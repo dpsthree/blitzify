@@ -13,7 +13,7 @@ export function createBlitzList(args: Config): Promise<string[]> {
 
   // For now we are simply returning the promise to test this half of the process
   return git.Repository.open(args.pathToRepo)
-    .then(processTags(args))
+    .then(filterTags(args))
     .catch(err => {
       console.error(`Unabled to open repository at: ${args.pathToRepo}`, err);
       return [];
@@ -28,7 +28,7 @@ export function createBlitzList(args: Config): Promise<string[]> {
  * @param repo the open repository to fetch the tags from
  * @return a function that can be called to obtain the promise to a filtered list
  */
-function processTags(config: Config): (repo: git.Repository) => Promise<string[]> {
+function filterTags(config: Config): (repo: git.Repository) => Promise<string[]> {
   return function (repo: git.Repository) {
     return git.Tag.list(repo)
       .then(tagList => tagList.filter(tag => tag.indexOf(config.prefix) >= 0));
