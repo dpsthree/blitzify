@@ -18,6 +18,7 @@ export interface Config extends yargs.Arguments {
   outfile: string;
   marker: string;
   pathToRepo: string;
+  githubRepo: string;
 }
 
 /**
@@ -48,6 +49,11 @@ export function processArgs() {
     .alias('r', 'pathToRepo')
     .describe('r', 'The path to the target repo')
     .default('r', DEFAULT_PATH_TO_REPO)
+
+    .string('u')
+    .alias('u', 'githubRepo')
+    .describe('u', 'The name of the upstream Github repository. ex: dpsthree/blitzify')
+    .demandOption('u')
 
     .help()
     .argv as Config;
