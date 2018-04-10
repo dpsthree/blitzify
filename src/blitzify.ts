@@ -9,7 +9,8 @@ const TAG_PORTION = '(\\d+)(_(.+))?';
 const TAG_MAP = {
   number: 1,
   description: 3
-}
+};
+const STACKBLITZ_URL = 'https://stackblitz.com/github';
 
 /**
  * Orchestrates the tasks needed for creation of link generation.
@@ -82,7 +83,7 @@ function processOneTag(prefix: string, regEx: RegExp, tag: string, repo: string)
 }
 
 /**
- * Combines the pieces of the a tag and the target repo to create
+ * Combines the pieces of the tag and the target repo to create
  * a markdown compatible string that is ready for insertion into the file
  * 
  * @param parsedTag the tag to convert
@@ -91,6 +92,6 @@ function processOneTag(prefix: string, regEx: RegExp, tag: string, repo: string)
 function convertTagToUrl(parsedTag: ParsedTag, repo: string): string {
   const description = parsedTag.description ? ` - ${parsedTag.description}` : '';
   return `${parsedTag.prefix}${parsedTag.stepNumber}${description}
-[link](https://stackblitz.io/github/${repo}/${parsedTag.tag})
+[link](${STACKBLITZ_URL}/${repo}/${parsedTag.tag})
 `;
 }
