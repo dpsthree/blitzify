@@ -96,8 +96,7 @@ function processOneTag(prefix, regEx, tag, repo) {
  */
 function convertTagToUrl(parsedTag, repo) {
     const description = parsedTag.description ? ` - ${parsedTag.description}` : '';
-    return `${parsedTag.prefix}${parsedTag.stepNumber}${description}
-[link](${STACKBLITZ_URL}/${repo}/${parsedTag.tag})
+    return `[${parsedTag.prefix}${parsedTag.stepNumber}${description}](${STACKBLITZ_URL}/${repo}/tree/${parsedTag.tag})
 `;
 }
 //# sourceMappingURL=blitzify.js.map

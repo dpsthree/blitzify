@@ -101,7 +101,6 @@ function processOneTag(prefix: string, regEx: RegExp, tag: string, repo: string)
  */
 function convertTagToUrl(parsedTag: ParsedTag, repo: string): string {
   const description = parsedTag.description ? ` - ${parsedTag.description}` : '';
-  return `${parsedTag.prefix}${parsedTag.stepNumber}${description}
-[link](${STACKBLITZ_URL}/${repo}/${parsedTag.tag})
+  return `[${parsedTag.prefix}${parsedTag.stepNumber}${description}](${STACKBLITZ_URL}/${repo}/tree/${parsedTag.tag})
 `;
 }

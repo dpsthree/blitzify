@@ -1,6 +1,6 @@
 {
   "name": "blitzify",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Tooling to automate creation of stackblitz references",
   "main": "build/app.js",
   "scripts": {
