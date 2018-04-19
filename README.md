@@ -48,6 +48,6 @@ MIT
 </a>
 
 [Angular Boot Camp](https://angularbootcamp.com)
-<a href="https://angularbootcamp.com
+<a href="https://angularbootcamp.com">
 <img src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg">
 </a>
