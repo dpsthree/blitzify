@@ -15,9 +15,9 @@ blitzify -h
 
 ## Repository setup
 
-Blitzify was originally created to easily update a projects README.md file by inserting a collection of stackblitz links. By default Blitzify will attempt to locate the following text "----stackblitz list----" inside README.md. This marker is replaced by the generated list content. Please ensure that this marker is present before executing.
+Blitzify was originally created to easily update a project's README.md file by inserting a collection of stackblitz links. By default Blitzify will attempt to locate the following text "----stackblitz list----" inside README.md. This marker is replaced by the generated link content. Please ensure that this marker is present before executing.
 
-Blitzify works by reading tagged commits in a repository. Please make sure that the appropriate tags are in place before running Blitzify. By default Blitzify will look for tags with the following structure: ```Step-##_Description```. For example: ```Step-12_Lazy_loading_modules```
+Blitzify works by reading [tagged Git commits](https://git-scm.com/book/en/v2/Git-Basics-Tagging) in a repository. Please make sure that the appropriate tags are in place before running Blitzify. By default Blitzify will look for tags with the following structure: ```Step-##_Description```. For example: ```Step-12_Lazy_loading_modules```
 
 ### Custom markers
 
@@ -43,7 +43,11 @@ MIT
 [Paul Spears](github.com/dpsthree) [@dpsthree](twitter.com/dpsthree)
 
 [Oasis Digital Solutions](https://oasisdigtal.com)
+<a href="https://oasisdigital.com">
 <img src="https://angularbootcamp.com/images/od-logo.svg">
+</a>
 
 [Angular Boot Camp](https://angularbootcamp.com)
+<a href="https://angularbootcamp.com>
 <img src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg">
+</a>
